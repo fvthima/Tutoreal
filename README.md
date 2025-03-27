@@ -80,10 +80,14 @@ The project demonstrates best practices in modular programming and code organiza
 
 ### Sign Up or Log In to Access the Dashboard:
 
-   ## Create a new account or log in with the following existing credentials:
+ -  Create a new account or log in with the following existing credentials:
 
-      username: edward.miller@example.com
-      password: password
+         tutor
+         username: edward.miller@example.com
+         password: password
+         student
+         username: evan.stone@example.com
+         password: password
 
 ### Module-specific Scripts:
 

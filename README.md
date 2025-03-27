@@ -70,11 +70,11 @@ The project demonstrates best practices in modular programming and code organiza
 
 ### Module-specific Scripts:
 
-issue_extraction.py: Extract and analyze issues from text data.
+ - issue_extraction.py: Extract and analyze issues from text data.
 
-sentiment_analysis.py: Analyze the sentiment of provided text.
+ - sentiment_analysis.py: Analyze the sentiment of provided text.
 
-rl_training.py: Train models using reinforcement learning techniques.
+ - rl_training.py: Train models using reinforcement learning techniques.
 
 
 ## Project Structure
@@ -128,19 +128,12 @@ Tutoreal/
 The main dependencies for this project include:
 
  - Flask – Core web framework.
-
  - Flask-APScheduler, Flask-Cors, Flask-SocketIO, Flask-SQLAlchemy – Extensions for scheduling tasks, handling CORS, real-time communications, and database interactions.
-
  - mysql-connector-python – MySQL database connectivity.
-
  - MarkupSafe, Werkzeug – Utilities for secure templating.
-
  - nltk, transformers, numpy – Libraries for natural language processing and numerical computations.
-
  - python-dotenv – Environment variable management.
-
  - SQLAlchemy – SQL toolkit and ORM.
-
  - eventlet – Asynchronous support.
 
 For the complete list, please refer to the requirements.txt file.

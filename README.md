@@ -24,17 +24,23 @@ The project demonstrates best practices in modular programming and code organiza
 
 ## Features
 
-- **AI-Powered Matching System**  
-  Connects students with tutors based on subject needs, learning styles, and availability.
+- **AI-Powered Matching System:**  
+   - Uses AI algorithms to match students with tutors based on compatibility scores.
+   - Takes into account subject expertise, teaching style, learning preferences, and availability.
 
-- **Live Tutoring Sessions**  
-  Real-time video and chat features enable seamless communication and interactive learning experiences.
+- **Real-Time Collaboration:**  
+   - Supports live video conferencing, audio-only sessions, chat, whiteboard, and file sharing.
+   - Powered by WebRTC and Socket.IO for minimal latency and real-time interaction.
 
-- **Smart Feedback System**  
-  AI analyzes session data to provide constructive feedback to tutors.
+- **AI-Driven Feedback System:**  
+   - Uses NLP to analyze session feedback from the student and generate actionable insights.
+   - Provides personalized tips for improving the tutors.
 
-- **User Profiles**  
-  Students and tutors can list subjects of interest, areas of expertise, availability, and goals.
+- **Scheduling**  
+   - Book and manage tutoring sessions with calendar integration.
+     
+- **Secure Payment System:**
+   - Supports secure transactions
 
 ## Installation
 

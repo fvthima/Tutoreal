@@ -82,10 +82,11 @@ The project demonstrates best practices in modular programming and code organiza
 
  -  Create a new account or log in with the following existing credentials:
 
-         tutor
+         Tutor
          username: edward.miller@example.com
          password: password
-         student
+    
+         Student
          username: evan.stone@example.com
          password: password
 

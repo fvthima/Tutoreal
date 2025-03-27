@@ -78,9 +78,9 @@ The project demonstrates best practices in modular programming and code organiza
 
     http://localhost:5001
 
-### Detailed workflow 
+## Detailed workflow 
 
-## for the tutor case:
+### for the tutor case:
 
 •⁠  ⁠First, the tutor can either log in or sign up. If logging in with an existing account, the tutor enters their email and password, and upon successful authentication, they are directed to the tutor dashboard. If signing up, they provide an email and password and are immediately taken to the profile settings page to input their details.
 
@@ -92,7 +92,7 @@ The project demonstrates best practices in modular programming and code organiza
 
 This end-to-end workflow ensures that tutors have a streamlined experience from authentication, profile management, and session scheduling to receiving actionable feedback after sessions.
 
-## for the student case:
+### for the student case:
 
 •⁠  ⁠First, the student can either log in or sign up. Both processes work similarly—upon entering their email and password, they are directed to the student profile settings page where they input or update their personal details by clicking on edit and then saving.
 
@@ -108,7 +108,7 @@ This end-to-end workflow ensures that tutors have a streamlined experience from 
 
 This workflow ensures a seamless end-to-end experience for students—from account creation and personalized tutor matching to booking, session participation, and post-session review—reflecting the system specifications detailed in our documentation.
 
-### Step‐by‐step testing workflow for the real‑time collaboration feature using an existing tutor and student account:
+## Step‐by‐step testing workflow for the real‑time collaboration feature using an existing tutor and student account:
 
 •⁠  ⁠Start by opening your browser and logging in as the tutor in one tab. 
  - log in with the following existing credentials:

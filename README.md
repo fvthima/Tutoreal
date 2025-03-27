@@ -47,28 +47,26 @@ The project demonstrates best practices in modular programming and code organiza
 
 1. **Clone the Repository:**
 
-   ```bash
+   ```
    git clone https://github.com/yourusername/your-repo-name.git
    cd your-repo-name
 
 2. **Create and Activate a Virtual Environment:**
 
-   ```bash
+   ```
     python3 -m venv venv
     source venv/bin/activate   # On Windows: venv\Scripts\activate
 
 3. **Install Dependencies:**
 
-   ```bash
+   ```
     pip install -r requirements.txt
 
 ## Usage
 
 ### Running the Application:
 
-    ```bash
     python app.py
-    ```
 
 ### Module-specific Scripts:
 

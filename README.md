@@ -80,48 +80,48 @@ The project demonstrates best practices in modular programming and code organiza
 ## Project Structure
 
 Tutoreal/
-├── app.py                   
-├── config.py   
-├── models.py
-├── improvement_tips.py      
-├── issue_extraction.py    
-├── matching_module.py       
-├── rl_training.py         
-├── sentiment_analysis.py   
-├── weights.json         
-├── requirements.txt    
+|-- app.py                   
+|-- config.py   
+|-- models.py
+|-- improvement_tips.py      
+|-- issue_extraction.py    
+|-- matching_module.py       
+|-- rl_training.py         
+|-- sentiment_analysis.py   
+|-- weights.json         
+|-- requirements.txt    
 
 static/             
-│   ├── css/                  
-│   ├── images/        
-│   ├── js/
-│   ├── uploads/     
-│   ├── webfonts/     
+|  |-- css/                  
+|  |-- images/        
+|  |-- js/
+|  |-- uploads/     
+|  |-- webfonts/     
 
 templates/           
-│   ├── landing-page.html  
-│   ├── login-page.html    
-│   ├── sign-up-page.html   
-│   ├── sign-up-student-page.html   
-│   ├── dashboard-student.html 
-│   ├── dashboard-tutor.html 
-│   ├── find-a-tutor.html    
-│   ├── match-tutor.html    
-│   ├── call_page.html 
-│   ├── call-feedback.html 
-│   ├── review-feedback.html
-│   ├── feedback.html
-│   ├── student_session.html
-│   ├── tutor_session.html
-│   ├── booking-page.html
-│   ├── book-confirmation.html
-│   ├── student-profile-setting.html
-│   ├── tutor-profile-page.html
-│   ├── tutor-profile-setting.html
+|  |-- landing-page.html  
+|  |-- login-page.html    
+|  |-- sign-up-page.html   
+|  |-- sign-up-student-page.html   
+|  |-- dashboard-student.html 
+|  |-- dashboard-tutor.html 
+|  |-- find-a-tutor.html    
+|  |-- match-tutor.html    
+|  |-- call_page.html 
+|  |-- call-feedback.html 
+|  |-- review-feedback.html
+|  |-- feedback.html
+|  |-- student_session.html
+|  |-- tutor_session.html
+|  |-- booking-page.html
+|  |-- book-confirmation.html
+|  |-- student-profile-setting.html
+|  |-- tutor-profile-page.html
+|  |-- tutor-profile-setting.html
 
-├── __pycache__/            
-├── .gitignore            
-└── README.md  
+|-- __pycache__/            
+|-- .gitignore            
+|__ README.md  
 
 
 ## Dependencies

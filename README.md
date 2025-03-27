@@ -127,21 +127,21 @@ Tutoreal/
 ## Dependencies
 The main dependencies for this project include:
 
-Flask – Core web framework.
+ - Flask – Core web framework.
 
-Flask-APScheduler, Flask-Cors, Flask-SocketIO, Flask-SQLAlchemy – Extensions for scheduling tasks, handling CORS, real-time communications, and database interactions.
+ - Flask-APScheduler, Flask-Cors, Flask-SocketIO, Flask-SQLAlchemy – Extensions for scheduling tasks, handling CORS, real-time communications, and database interactions.
 
-mysql-connector-python – MySQL database connectivity.
+ - mysql-connector-python – MySQL database connectivity.
 
-MarkupSafe, Werkzeug – Utilities for secure templating.
+ - MarkupSafe, Werkzeug – Utilities for secure templating.
 
-nltk, transformers, numpy – Libraries for natural language processing and numerical computations.
+ - nltk, transformers, numpy – Libraries for natural language processing and numerical computations.
 
-python-dotenv – Environment variable management.
+ - python-dotenv – Environment variable management.
 
-SQLAlchemy – SQL toolkit and ORM.
+ - SQLAlchemy – SQL toolkit and ORM.
 
-eventlet – Asynchronous support.
+ - eventlet – Asynchronous support.
 
 For the complete list, please refer to the requirements.txt file.
 

@@ -78,6 +78,7 @@ rl_training.py: Train models using reinforcement learning techniques.
 
 
 ## Project Structure
+
 Tutoreal/
 ├── app.py                   
 ├── config.py   
@@ -119,9 +120,8 @@ Tutoreal/
 │   ├── tutor-profile-setting.html
 │
 ├── __pycache__/            
-│
-└── .gitignore            
-└── README.md          
+├── .gitignore            
+└── README.md  
 
 
 ## Dependencies
@@ -146,9 +146,9 @@ eventlet – Asynchronous support.
 For the complete list, please refer to the requirements.txt file.
 
 ## Contributors
-Rudra Thavarankattil - 7544984 - AI, Full Stack Developer
-Fathima Haris Ahmed - 7743749 - Full Stack Developer
-Teng Ian Khoo - 8121667 - Backend Developer
-Nathan Gonsalves - 7849187 - Full Stack Developer
-Khaled Ali - 7312167 - Security Developer
+ - Rudra Thavarankattil - 7544984 - AI, Full Stack Developer
+ - Fathima Haris Ahmed - 7743749 - Full Stack Developer
+ - Teng Ian Khoo - 8121667 - Backend Developer
+ - Nathan Gonsalves - 7849187 - Full Stack Developer
+ - Khaled Ali - 7312167 - Security Developer
 

@@ -161,9 +161,9 @@ The main dependencies for this project include:
 For the complete list, please refer to the requirements.txt file.
 
 ## Contributors
- - Rudra Thavarankattil - 7544984 - AI, Full Stack Developer
- - Fathima Haris Ahmed - 7743749 - Full Stack Developer
- - Nathan Gonsalves - 7849187 - Full Stack Developer
- - Teng Ian Khoo - 8121667 - Backend Developer
+ - Rudra Thavarankattil - 7544984 - AI and Backend Developer -GROUP LEADER
+ - Fathima Haris Ahmed - 7743749 - Frontend and UI/UX developer
+ - Nathan Gonsalves - 7849187 - Backend Developer
+ - Teng Ian Khoo - 8121667 - Backend Developer -SCRIBE
  - Khaled Ali - 7312167 - Security Developer
 

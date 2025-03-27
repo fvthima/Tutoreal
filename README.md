@@ -66,7 +66,9 @@ The project demonstrates best practices in modular programming and code organiza
 
 ### Running the Application:
 
+    ```bash
     python app.py
+    ```
 
 ### Module-specific Scripts:
 

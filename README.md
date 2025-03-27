@@ -141,7 +141,7 @@ For the complete list, please refer to the requirements.txt file.
 ## Contributors
  - Rudra Thavarankattil - 7544984 - AI, Full Stack Developer
  - Fathima Haris Ahmed - 7743749 - Full Stack Developer
- - Teng Ian Khoo - 8121667 - Backend Developer
  - Nathan Gonsalves - 7849187 - Full Stack Developer
+ - Teng Ian Khoo - 8121667 - Backend Developer
  - Khaled Ali - 7312167 - Security Developer
 

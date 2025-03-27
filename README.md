@@ -74,6 +74,17 @@ The project demonstrates best practices in modular programming and code organiza
 
     python app.py
 
+### Accessing the Platform:
+
+    http://localhost:5001
+
+### Sign Up or Log In to Access the Dashboard:
+
+   ## Create a new account or log in with the following existing credentials:
+
+      username: edward.miller@example.com
+      password: password
+
 ### Module-specific Scripts:
 
  - issue_extraction.py: Extract and analyze issues from text data.

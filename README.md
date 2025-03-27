@@ -90,15 +90,15 @@ Tutoreal/
 ├── sentiment_analysis.py   
 ├── weights.json         
 ├── requirements.txt    
-│
-├── static/             
+
+static/             
 │   ├── css/                  
 │   ├── images/        
 │   ├── js/
 │   ├── uploads/     
 │   ├── webfonts/     
-│
-├── templates/           
+
+templates/           
 │   ├── landing-page.html  
 │   ├── login-page.html    
 │   ├── sign-up-page.html   
@@ -118,7 +118,7 @@ Tutoreal/
 │   ├── student-profile-setting.html
 │   ├── tutor-profile-page.html
 │   ├── tutor-profile-setting.html
-│
+
 ├── __pycache__/            
 ├── .gitignore            
 └── README.md  

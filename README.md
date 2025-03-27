@@ -78,7 +78,7 @@ The project demonstrates best practices in modular programming and code organiza
 
 
 ## Project Structure
-
+```
 Tutoreal/
 ├── app.py                   
 ├── config.py   
@@ -122,7 +122,7 @@ Tutoreal/
 ├── __pycache__/            
 ├── .gitignore            
 └── README.md  
-
+```
 
 ## Dependencies
 The main dependencies for this project include:

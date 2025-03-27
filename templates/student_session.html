@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- Meta setup -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="">
+    <meta name="decription" content="">
+    <!-- Title -->
+    <title>Match Tutor</title>
+    <!-- Fav Icon -->
+    <link rel="icon" href="/static/images/favicon.ico">
+    <!-- Include Bootstrap -->
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <!-- fontawsome css file  -->
+    <link rel="stylesheet" href="/static/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <!-- Main StyleSheet -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/static/css/responsive.css">
+  </head>
+  <body style="background: #eee;">
+    <!-- Sidebar -->
+    <aside class="sidebar-area sidebar-two-sty">
+      <div class="sidebar-logo">
+          <a href="{{ url_for('dashboard_student') }}"> t <span>utoreal</span>
+          </a>
+          <!-- for mobile  -->
+          <div class="menu-close-toggle d-lg-none">
+              <i class="fa-solid fa-x"></i>
+          </div>
+      </div>
+      
+      <div class="sidebar-nav">
+          <ul>
+            <li>
+              <a href="{{ url_for('dashboard_student') }}">
+                <div class="nav-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21 20" fill="none">
+                              <path d="M17.9531 1C19.0577 1 19.9531 1.88316 19.9531 2.9726L19.9531 6.33992C19.9531 7.42936 19.0577 8.31252 17.9531 8.31252H14.9531C13.8486 8.31252 12.9531 7.42936 12.9531 6.33992L12.9531 2.9726C12.9531 1.88316 13.8486 1 14.9531 1L17.9531 1Z" stroke="#1B0878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M3.95312 1C2.84855 1 1.95312 1.88316 1.95312 2.9726L1.95313 6.33992C1.95313 7.42936 2.84856 8.31252 3.95313 8.31252H6.95313C8.0577 8.31252 8.95313 7.42936 8.95313 6.33992L8.95312 2.9726C8.95312 1.88316 8.05769 1 6.95312 1L3.95312 1Z" stroke="#1B0878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M17.9531 11.6875C19.0577 11.6875 19.9531 12.5707 19.9531 13.6601V17.0274C19.9531 18.1168 19.0577 19 17.9531 19H14.9531C13.8486 19 12.9531 18.1168 12.9531 17.0274L12.9531 13.6601C12.9531 12.5707 13.8486 11.6875 14.9531 11.6875H17.9531Z" stroke="#1B0878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                              <path d="M3.95313 11.6875C2.84856 11.6875 1.95313 12.5707 1.95313 13.6601L1.95314 17.0274C1.95314 18.1168 2.84857 19 3.95314 19H6.95313C8.0577 19 8.95313 18.1168 8.95313 17.0274L8.95313 13.6601C8.95313 12.5707 8.0577 11.6875 6.95313 11.6875H3.95313Z" stroke="#1B0878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                      </div>
+                      <p>Dashboard</p>
+                  </a>
+              </li>
+              <li>
+                <a href="{{ url_for('student_session_view') }}">
+                  <div class="nav-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 23 22" fill="none">
+                              <path d="M4.88411 9.96817L10.8182 13.5045C11.1336 13.6925 11.5266 13.6925 11.842 13.5045L21.426 7.79303C21.7514 7.59913 21.7514 7.12791 21.426 6.93401L11.842 1.22254C11.5266 1.03457 11.1336 1.03457 10.8182 1.22254L1.23417 6.934C0.908788 7.12791 0.908789 7.59913 1.23417 7.79303L4.88411 9.96817ZM4.88411 9.96817L4.88411 16.2116C4.88411 16.5536 5.05896 16.872 5.34766 17.0555L10.2957 20.2007C10.9304 20.6042 11.7379 20.6175 12.3855 20.235L17.7775 17.0511C18.0821 16.8712 18.269 16.5438 18.269 16.19L18.269 9.96817" stroke="#1B0878" stroke-width="2" />
+                          </svg>
+                      </div>
+                      <p>My Sessions</p>
+                  </a>
+              </li>
+              <li>
+                <a href="{{ url_for('find_a_tutor') }}">
+                  <div class="nav-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                              <path d="M1.90627 15.9672C1.84406 16.516 2.2385 17.0113 2.78727 17.0735C3.33604 17.1357 3.83134 16.7412 3.89354 16.1925L1.90627 15.9672ZM4.0199 6.19897L3.3772 5.43286C3.18077 5.59764 3.05514 5.83158 3.02627 6.08634L4.0199 6.19897ZM6.9026 5.08594C7.32572 4.73099 7.38097 4.10024 7.02602 3.67712C6.67107 3.25401 6.04032 3.19875 5.6172 3.55371L6.9026 5.08594ZM21.1063 16.1925C21.1685 16.7412 21.6638 17.1357 22.2125 17.0735C22.7613 17.0113 23.1557 16.516 23.0935 15.9672L21.1063 16.1925ZM20.9799 6.19897L21.9735 6.08634C21.9447 5.83158 21.819 5.59764 21.6226 5.43286L20.9799 6.19897ZM19.3826 3.55371C18.9595 3.19875 18.3287 3.25401 17.9738 3.67712C17.6188 4.10024 17.6741 4.73099 18.0972 5.08594L19.3826 3.55371ZM8.6199 16.3198C8.6199 17.6232 7.56329 18.6798 6.2599 18.6798V20.6798C8.66786 20.6798 10.6199 18.7278 10.6199 16.3198H8.6199ZM6.2599 18.6798C4.95651 18.6798 3.8999 17.6232 3.8999 16.3198H1.8999C1.8999 18.7278 3.85194 20.6798 6.2599 20.6798V18.6798ZM3.8999 16.3198C3.8999 15.0164 4.95651 13.9598 6.2599 13.9598V11.9598C3.85194 11.9598 1.8999 13.9119 1.8999 16.3198H3.8999ZM6.2599 13.9598C7.56329 13.9598 8.6199 15.0164 8.6199 16.3198H10.6199C10.6199 13.9119 8.66786 11.9598 6.2599 11.9598V13.9598ZM10.455 16.1006C10.8646 15.3925 11.6276 14.9198 12.4999 14.9198V12.9198C10.8848 12.9198 9.47618 13.7985 8.72383 15.0991L10.455 16.1006ZM12.4999 14.9198C13.3722 14.9198 14.1352 15.3925 14.5448 16.1006L16.276 15.0991C15.5237 13.7985 14.115 12.9198 12.4999 12.9198V14.9198ZM21.0999 16.3198C21.0999 17.6232 20.0433 18.6798 18.7399 18.6798V20.6798C21.1479 20.6798 23.0999 18.7278 23.0999 16.3198H21.0999ZM18.7399 18.6798C17.4365 18.6798 16.3799 17.6232 16.3799 16.3198H14.3799C14.3799 18.7278 16.3319 20.6798 18.7399 20.6798V18.6798ZM16.3799 16.3198C16.3799 15.0164 17.4365 13.9598 18.7399 13.9598V11.9598C16.3319 11.9598 14.3799 13.9119 14.3799 16.3198H16.3799ZM18.7399 13.9598C20.0433 13.9598 21.0999 15.0164 21.0999 16.3198H23.0999C23.0999 13.9119 21.1479 11.9598 18.7399 11.9598V13.9598ZM3.89354 16.1925L5.01354 6.3116L3.02627 6.08634L1.90627 15.9672L3.89354 16.1925ZM4.6626 6.96509L6.9026 5.08594L5.6172 3.55371L3.3772 5.43286L4.6626 6.96509ZM23.0935 15.9672L21.9735 6.08634L19.9863 6.3116L21.1063 16.1925L23.0935 15.9672ZM21.6226 5.43286L19.3826 3.55371L18.0972 5.08594L20.3372 6.96509L21.6226 5.43286Z" fill="#1B0878" />
+                          </svg>
+                      </div>
+                      <p>Find a Tutor</p>
+                  </a>
+            </li>
+              
+          </ul>
+      </div>
+      <div class="right-profile-full d-lg-none">
+          <div class="profile-logo">
+            <a href="{{ url_for('dashboard_student') }}">
+              <img src="{{ student.profile_pic_url }}" alt="Profile Picture" />
+            </a>
+          </div>
+          <div class="user-name">
+            <p>{{ student.name }}</p>
+          </div>
+          <div class="arrow-icon">
+              <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="profile-action-nav">
+              <ul>
+                  <li>
+                    <a href="{{ url_for('student_profile_settings') }}">
+                      <span>Profile</span>
+                          <div class="icon">
+                              <i class="fa-regular fa-user"></i>
+                          </div>
+                      </a>
+                  </li>
+                  <li>
+                    <a href="{{ url_for('logout') }}">
+                      <span>Logout</span>
+                          <div class="icon">
+                              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                          </div>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div class="logout-btn">
+        <a href="{{ url_for('logout') }}">
+          <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8775 0C13.7359 0 16.0615 2.32555 16.0615 5.18398V6.27313C16.0615 6.75694 15.6688 7.1496 15.185 7.1496C14.7012 7.1496 14.3085 6.75694 14.3085 6.27313V5.18398C14.3085 3.29082 12.7695 1.75293 10.8775 1.75293H5.18048C3.29082 1.75293 1.75293 3.29082 1.75293 5.18398V18.1895C1.75293 20.0815 3.29082 21.6194 5.18048 21.6194H10.8903C12.7741 21.6194 14.3085 20.0862 14.3085 18.2024V17.1004C14.3085 16.6166 14.7012 16.2239 15.185 16.2239C15.6688 16.2239 16.0615 16.6166 16.0615 17.1004V18.2024C16.0615 21.0538 13.7406 23.3723 10.8903 23.3723H5.18048C2.32438 23.3723 0 21.048 0 18.1895V5.18398C0 2.32555 2.32438 0 5.18048 0H10.8775ZM20.32 7.65911L23.7417 11.0656C23.7723 11.0959 23.7996 11.1274 23.8246 11.1607L23.7417 11.0656C23.7831 11.1065 23.82 11.1511 23.8519 11.1986C23.866 11.2202 23.8795 11.2425 23.8921 11.2654C23.9023 11.2833 23.9117 11.3019 23.9204 11.3209C23.9278 11.3377 23.9349 11.3545 23.9414 11.3715C23.9502 11.3938 23.9579 11.4166 23.9647 11.4397C23.9698 11.4579 23.9745 11.4761 23.9786 11.4945C23.9838 11.5168 23.9879 11.5393 23.9912 11.5619C23.993 11.5766 23.9948 11.5921 23.9962 11.6076C23.9988 11.6342 24 11.6602 24 11.6862L23.994 11.7586L23.9916 11.805C23.9914 11.807 23.9911 11.809 23.9908 11.811L24 11.6862C24 11.751 23.9928 11.8153 23.9789 11.8777C23.9745 11.8962 23.9698 11.9144 23.9646 11.9323C23.9579 11.9558 23.9502 11.9786 23.9416 12.0011C23.9349 12.0178 23.9278 12.0346 23.9202 12.0511C23.9117 12.0704 23.9023 12.0891 23.8922 12.1074C23.8795 12.1299 23.866 12.1522 23.8515 12.1738C23.8433 12.1866 23.8343 12.1992 23.8249 12.2116C23.7971 12.2482 23.7668 12.2827 23.734 12.3146L20.32 15.7144C20.1494 15.885 19.925 15.9703 19.7018 15.9703C19.4775 15.9703 19.2519 15.885 19.0813 15.7121C18.7401 15.3685 18.7412 14.8146 19.0836 14.4733L21 12.5626H9.05187C8.56806 12.5626 8.17541 12.17 8.17541 11.6862C8.17541 11.2024 8.56806 10.8097 9.05187 10.8097H21.0024L19.0836 8.90019C18.7412 8.55895 18.7389 8.00502 19.0813 7.66145C19.4225 7.31788 19.9765 7.31788 20.32 7.65911Z" fill="#E55858" />
+                  </svg>
+              </div>
+              <p>Sign Out</p>
+          </a>
+      </div>
+    </aside>
+    <div class="overlay d-lg-none"></div>
+    <!-- End Sidebar -->
+
+    <main class="main-area bg-sty-cng">
+      <section class="content-main-area">
+        <!-- Page Header -->
+        <header class="main-header d-lg-none">
+          <div class="menu-toggle-btn d-lg-none">
+            <button><i class="fa-solid fa-bars"></i></button>
+          </div>
+          <div class="user-short">
+            <a href="#">
+              <img src="{{ student.profile_pic_url }}" alt="Profile Picture" />
+            </a>
+          </div>
+        </header>
+
+        <!-- Title / Subtitle -->
+        <div class="student-session-wrapper">
+          <div class="feedback-overview tutor-session-wp student-session">
+            <h2>My Sessions</h2>
+            <p>Track all your courses and personal tutoring sessions in one place.</p>
+
+            <!-- Filter Buttons -->
+            <div class="tutor-session-btn">
+              <button class="upcomin-session" id="btnOngoing">Ongoing</button>
+              <button class="complete-session" id="btnUpcoming">Upcoming</button>
+              <button class="complete-session" id="btnCompleted">Completed</button>
+            </div>
+
+            <!-- Session Cards Container -->
+            <div class="student-session-list">
+              <div class="row" id="session-list-container">
+                <!-- Dynamically appended cards go here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- jQuery / Bootstrap JS -->
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap jQuery -->
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-circle-progress/dist/circle-progress.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Custom jQuery -->
+    <script src="/static/js/scripts.js"></script>
+
+    <script>
+
+    function parseLocalTime(gmtString) {
+      // e.g. "Tue, 01 Aug 2023 08:30:00 GMT"
+      // remove " GMT" so it no longer looks like a UTC date
+      const localString = gmtString.replace(" GMT", "");
+      // parse as local time
+      return new Date(localString);
+    }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Retrieve the student_id from localStorage (or handle via a template variable if preferred)
+        const studentId = localStorage.getItem("student_id");
+        if (!studentId) {
+          console.error("Student ID not found in localStorage.");
+          return;
+        }
+
+        // Fetch sessions from the API using the student ID from session/localStorage
+        const endpoint = '/sessions/student';
+        fetch('/sessions/student')
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch sessions");
+          return res.json();
+        })
+        .then((sessions) => {
+          console.log("Student sessions =>", sessions);
+          renderSessions(sessions);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+        // Setup filter button listeners
+        const btnOngoing = document.getElementById("btnOngoing");
+        const btnUpcoming = document.getElementById("btnUpcoming");
+        const btnCompleted = document.getElementById("btnCompleted");
+
+        btnOngoing.addEventListener("click", () => filterSessions("Ongoing"));
+        btnUpcoming.addEventListener("click", () => filterSessions("Upcoming"));
+        btnCompleted.addEventListener("click", () => filterSessions("Completed"));
+
+        let globalSessions = [];
+
+        function renderSessions(sessions) {
+          globalSessions = sessions;
+          filterSessions("Ongoing"); // Default filter
+        }
+
+        // Determine the category of a session
+        function getSessionCategory(session) {
+          const now = new Date();
+          const localDate = parseLocalTime(session.scheduled_time);
+          const sched = localDate;
+
+          console.log("Now = " + now);
+          console.log("Local Date = " + localDate);
+
+          if (session.session_status === "Completed") {
+            return "Completed";
+          } else if (session.session_status === "Canceled") {
+            return "Completed";
+          } else {
+            if (sched > now) {
+              return "Upcoming";
+            } else if (sched <= now && (now - sched) < 60 * 60 * 1000) {
+              return "Ongoing";
+            } else {
+              return "Completed";
+            }
+          }
+        }
+
+        // Filter and render sessions based on category
+        function filterSessions(category) {
+          const container = document.getElementById("session-list-container");
+          container.innerHTML = "";
+          const filtered = globalSessions.filter((sess) => getSessionCategory(sess) === category);
+          filtered.forEach((session) => {
+            const cat = getSessionCategory(session);
+            const localDate = parseLocalTime(session.scheduled_time);
+            const dateObj = localDate;
+
+            const dateStr = dateObj.toLocaleDateString([], {
+              year: "numeric",
+              month: "short",
+              day: "numeric"
+            });
+            const timeStr = dateObj.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit"
+            });
+            let btnLabel = "";
+            if (cat === "Ongoing") {
+              btnLabel = "Join Now";
+            }
+            const cardHTML = `
+              <div class="col-md-6 col-xl-4">
+                <div class="signle-student-session">
+                  <div class="tutor-img">
+                    <img src="/static/images/session-tutor-img.png" alt="Tutor">
+                  </div>
+                  <div class="student-session-content">
+                    <div class="student-session-name">
+                      <span>Personal Tutoring Session</span>
+                    </div>
+                    <div class="student-session-date-time d-flex align-items-center justify-content-between">
+                      <p>${dateStr}</p>
+                      <p>${timeStr}</p>
+                    </div>
+                    <div class="student-session-title">
+                      <h4>${session.subject_name || "No Subject"}</h4>
+                    </div>
+                    <div class="student-session-details">
+                      <p>With Tutor: ${session.tutor_name || "N/A"}</p>
+                      <p>Status: ${session.session_status}</p>
+                    </div>
+                    <div class="student-session-start-time">
+                      <div class="start-time">
+                        <span>・${cat}</span>
+                      </div>
+                      <div class="session-action-btn mt-auto">
+                        ${cat === "Ongoing" ? `<a class="start-now" href="/session/${session.session_id}/call">${btnLabel}</a>` : ""}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            container.innerHTML += cardHTML;
+          });
+        }
+      });
+    </script>
+    <script src="/static/js/sessionManager.js"></script>
+  </body>
+</html>

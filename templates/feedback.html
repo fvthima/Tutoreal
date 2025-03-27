@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <!-- Meta setup -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="keywords" content="">
+        <meta name="decription" content="">
+        <!-- Title -->
+        <title>All Feedback</title>
+        <!-- Fav Icon -->
+        <link rel="icon" href="/static/images/favicon.ico">
+        <!-- Include Bootstrap -->
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <!-- fontawsome css file  -->
+        <link rel="stylesheet" href="/static/css/all.min.css">
+        <!-- Main StyleSheet -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">
+                You are using an <strong>outdated</strong> browser. Please 
+                <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+            </p>
+        <![endif]-->
+        <!-- sidebar start hare  -->
+        <aside class="sidebar-area sidebar-two-sty">
+            <div class="sidebar-logo">
+                <a href="{{ url_for('dashboard_tutor') }}">
+                    t <span>utoreal</span>
+                </a>
+                <!-- for mobile  -->
+                <div class="menu-close-toggle d-lg-none">
+                    <i class="fa-solid fa-x"></i>
+                </div>
+            </div>
+            
+            <div class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a class="active" href="{{ url_for('dashboard_tutor') }}">
+                            <div class="nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21 20" fill="none">
+                                    <path d="M17.9531 1C19.0577 1 19.9531 1.88316 19.9531 2.9726L19.9531 6.33992C19.9531 7.42936 19.0577 8.31252 17.9531 8.31252H14.9531C13.8486 8.31252 12.9531 7.42936 12.9531 6.33992L12.9531 2.9726C12.9531 1.88316 13.8486 1 14.9531 1L17.9531 1Z" stroke="#1B0878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.95312 1C2.84855 1 1.95312 1.88316 1.95312 2.9726L1.95313 6.33992C1.95313 7.42936 2.84856 8.31252 3.95313 8.31252H6.95313C8.0577 8.31252 8.95313 7.42936 8.95313 6.33992L8.95312 2.9726C8.95312 1.88316 8.05769 1 6.95312 1L3.95312 1Z" stroke="#1B0878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M17.9531 11.6875C19.0577 11.6875 19.9531 12.5707 19.9531 13.6601V17.0274C19.9531 18.1168 19.0577 19 17.9531 19H14.9531C13.8486 19 12.9531 18.1168 12.9531 17.0274L12.9531 13.6601C12.9531 12.5707 13.8486 11.6875 14.9531 11.6875H17.9531Z" stroke="#1B0878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3.95313 11.6875C2.84856 11.6875 1.95313 12.5707 1.95313 13.6601L1.95314 17.0274C1.95314 18.1168 2.84857 19 3.95314 19H6.95313C8.0577 19 8.95313 18.1168 8.95313 17.0274L8.95313 13.6601C8.95313 12.5707 8.0577 11.6875 6.95313 11.6875H3.95313Z" stroke="#1B0878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="active" href="{{ url_for('tutor_session_view') }}">
+                            <div class="nav-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 23 22" fill="none">
+                                    <path d="M4.88411 9.96817L10.8182 13.5045C11.1336 13.6925 11.5266 13.6925 11.842 13.5045L21.426 7.79303C21.7514 7.59913 21.7514 7.12791 21.426 6.93401L11.842 1.22254C11.5266 1.03457 11.1336 1.03457 10.8182 1.22254L1.23417 6.934C0.908788 7.12791 0.908789 7.59913 1.23417 7.79303L4.88411 9.96817ZM4.88411 9.96817L4.88411 16.2116C4.88411 16.5536 5.05896 16.872 5.34766 17.0555L10.2957 20.2007C10.9304 20.6042 11.7379 20.6175 12.3855 20.235L17.7775 17.0511C18.0821 16.8712 18.269 16.5438 18.269 16.19L18.269 9.96817" stroke="#1B0878" stroke-width="2" />
+                                </svg>
+                            </div>
+                            <p>My Sessions</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="active" href="{{ url_for('session_feedback') }}">
+                            <div class="nav-icon">
+                                <svg class="fill-color" xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+                                    <rect width="24" height="24" transform="translate(3.5)" fill="#C6D6D8" />
+                                    <g filter="url(#filter0_d_1_9774)">
+                                        <mask id="path-1-inside-1_1_9774" fill="white">
+                                            <path d="M15.5 0L19.0267 7.1459L26.9127 8.2918L21.2063 13.8541L22.5534 21.7082L15.5 18L8.44658 21.7082L9.79366 13.8541L4.08732 8.2918L11.9733 7.1459L15.5 0Z" />
+                                        </mask>
+                                        <path d="M15.5 0L42.4021 -13.277L15.5 -67.7865L-11.4021 -13.277L15.5 0ZM19.0267 7.1459L-7.87537 20.4229L-0.895254 34.5661L14.7128 36.8341L19.0267 7.1459ZM26.9127 8.2918L47.853 29.7744L91.3815 -12.6554L31.2266 -21.3964L26.9127 8.2918ZM21.2063 13.8541L0.265987 -7.62849L-11.0281 3.38051L-8.36191 18.9255L21.2063 13.8541ZM22.5534 21.7082L8.59319 48.2621L62.3974 76.5487L52.1217 16.6369L22.5534 21.7082ZM15.5 18L29.4602 -8.55394L15.5 -15.8933L1.53977 -8.55394L15.5 18ZM8.44658 21.7082L-21.1217 16.6369L-31.3974 76.5487L22.4068 48.2621L8.44658 21.7082ZM9.79366 13.8541L39.3619 18.9255L42.0281 3.38051L30.734 -7.62849L9.79366 13.8541ZM4.08732 8.2918L-0.226627 -21.3964L-60.3815 -12.6554L-16.853 29.7744L4.08732 8.2918ZM11.9733 7.1459L16.2872 36.8341L31.8953 34.5661L38.8754 20.4229L11.9733 7.1459ZM-11.4021 13.277L-7.87537 20.4229L45.9288 -6.13107L42.4021 -13.277L-11.4021 13.277ZM14.7128 36.8341L22.5987 37.98L31.2266 -21.3964L23.3407 -22.5423L14.7128 36.8341ZM5.97233 -13.1908L0.265987 -7.62849L42.1467 35.3367L47.853 29.7744L5.97233 -13.1908ZM-8.36191 18.9255L-7.01483 26.7796L52.1217 16.6369L50.7746 8.78275L-8.36191 18.9255ZM36.5137 -4.84574L29.4602 -8.55394L1.53977 44.5539L8.59319 48.2621L36.5137 -4.84574ZM1.53977 -8.55394L-5.51366 -4.84574L22.4068 48.2621L29.4602 44.5539L1.53977 -8.55394ZM38.0148 26.7796L39.3619 18.9255L-19.7746 8.78275L-21.1217 16.6369L38.0148 26.7796ZM30.734 -7.62849L25.0277 -13.1908L-16.853 29.7744L-11.1467 35.3367L30.734 -7.62849ZM8.40127 37.98L16.2872 36.8341L7.65934 -22.5423L-0.226627 -21.3964L8.40127 37.98ZM38.8754 20.4229L42.4021 13.277L-11.4021 -13.277L-14.9288 -6.13107L38.8754 20.4229Z" fill="#150A4A" mask="url(#path-1-inside-1_1_9774)" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <p>Reviews</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="right-profile-full d-lg-none">
+                <div class="profile-logo">
+                    <a href="{{ url_for('dashboard_tutor') }}">
+                        <img src="{{ tutor.profile_pic_url }}" alt="Profile Picture"/>
+                    </a>
+                </div>
+                <div class="user-name">
+                    <p>{{ tutor.name }}</p>
+                </div>
+                <div class="arrow-icon">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="profile-action-nav">
+                    <ul>
+                        <li>
+                            <a href="{{ url_for('tutor_profile_settings') }}">
+                                <span>Profile</span>
+                                <div class="icon">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('logout') }}">
+                                <span>Logout</span>
+                                <div class="icon">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="logout-btn">
+                <a href="{{ url_for('logout') }}">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8775 0C13.7359 0 16.0615 2.32555 16.0615 5.18398V6.27313C16.0615 6.75694 15.6688 7.1496 15.185 7.1496C14.7012 7.1496 14.3085 6.75694 14.3085 6.27313V5.18398C14.3085 3.29082 12.7695 1.75293 10.8775 1.75293H5.18048C3.29082 1.75293 1.75293 3.29082 1.75293 5.18398V18.1895C1.75293 20.0815 3.29082 21.6194 5.18048 21.6194H10.8903C12.7741 21.6194 14.3085 20.0862 14.3085 18.2024V17.1004C14.3085 16.6166 14.7012 16.2239 15.185 16.2239C15.6688 16.2239 16.0615 16.6166 16.0615 17.1004V18.2024C16.0615 21.0538 13.7406 23.3723 10.8903 23.3723H5.18048C2.32438 23.3723 0 21.048 0 18.1895V5.18398C0 2.32555 2.32438 0 5.18048 0H10.8775ZM20.32 7.65911L23.7417 11.0656C23.7723 11.0959 23.7996 11.1274 23.8246 11.1607L23.7417 11.0656C23.7831 11.1065 23.82 11.1511 23.8519 11.1986C23.866 11.2202 23.8795 11.2425 23.8921 11.2654C23.9023 11.2833 23.9117 11.3019 23.9204 11.3209C23.9278 11.3377 23.9349 11.3545 23.9414 11.3715C23.9502 11.3938 23.9579 11.4166 23.9647 11.4397C23.9698 11.4579 23.9745 11.4761 23.9786 11.4945C23.9838 11.5168 23.9879 11.5393 23.9912 11.5619C23.993 11.5766 23.9948 11.5921 23.9962 11.6076C23.9988 11.6342 24 11.6602 24 11.6862L23.994 11.7586L23.9916 11.805C23.9914 11.807 23.9911 11.809 23.9908 11.811L24 11.6862C24 11.751 23.9928 11.8153 23.9789 11.8777C23.9745 11.8962 23.9698 11.9144 23.9646 11.9323C23.9579 11.9558 23.9502 11.9786 23.9416 12.0011C23.9349 12.0178 23.9278 12.0346 23.9202 12.0511C23.9117 12.0704 23.9023 12.0891 23.8922 12.1074C23.8795 12.1299 23.866 12.1522 23.8515 12.1738C23.8433 12.1866 23.8343 12.1992 23.8249 12.2116C23.7971 12.2482 23.7668 12.2827 23.734 12.3146L20.32 15.7144C20.1494 15.885 19.925 15.9703 19.7018 15.9703C19.4775 15.9703 19.2519 15.885 19.0813 15.7121C18.7401 15.3685 18.7412 14.8146 19.0836 14.4733L21 12.5626H9.05187C8.56806 12.5626 8.17541 12.17 8.17541 11.6862C8.17541 11.2024 8.56806 10.8097 9.05187 10.8097H21.0024L19.0836 8.90019C18.7412 8.55895 18.7389 8.00502 19.0813 7.66145C19.4225 7.31788 19.9765 7.31788 20.32 7.65911Z" fill="#E55858" />
+                        </svg>
+                    </div>
+                    <p>Sign Out</p>
+                </a>
+            </div>
+        </aside>
+        <div class="overlay d-lg-none"></div>
+        <!-- sidebar area end hare  -->
+        <main class="main-area">
+            <!-- content main area  -->
+            <section class="content-main-area">
+                <!-- main contetnt header  -->
+                <header class="main-header d-lg-none">
+                    <div class="menu-toggle-btn d-lg-none">
+                        <button>
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="user-short">
+                        <a href="#">
+                            <img src="{{ tutor.profile_pic_url }}" alt="Profile Picture">
+                        </a>
+                    </div>
+                </header>
+                <div class="review-top-section d-flex justify-content-between">
+                    <h2>Feedback</h2>
+                        <div class="right-profile-full">
+                            <div class="profile-logo">
+                              <a>
+                                <img src="{{ tutor.profile_pic_url }}" alt="Profile Picture">
+                              </a>
+                            </div>
+                          <div class="user-name">
+                            <p>{{ tutor.name }}</p>
+                          </div>
+                          <div class="arrow-icon">
+                            <i class="fa-solid fa-chevron-down"></i>
+                          </div>
+                          <div class="profile-action-nav">
+                            <ul>
+                              <li>
+                                <a href="{{ url_for('tutor_profile_settings') }}">
+                                  <span>Profile</span>
+                                  <div class="icon">
+                                    <i class="fa-regular fa-user"></i>
+                                  </div>
+                                </a>
+                              </li>
+                              <li>
+                                <a href="{{ url_for('logout') }}">
+                                  <span>Logout</span>
+                                  <div class="icon">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                  </div>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                </div>
+                <!-- feedback overview and subject  -->
+                <div class="feedback-overview">
+                    <p>Detailed feedback</p>
+                    <div class="d-flex feedback-row">
+                        <div class="feedback-left-card mt-0">
+                            <div class="recent-review-section">
+                                {% if reviews|length == 0 %}
+                                    <p>No feedbacks</p>
+                                {% else %}
+                                    {# Begin dynamic reviews loop #}
+                                    {% for review in reviews %}
+                                    <div class="recent-review-items">
+                                        <div class="review-header d-flex align-items-center justify-content-between">
+                                            <div class="review-user">
+                                                <div class="review-user-logo">
+                                                    <img src="{{ review.reviewer_logo }}" alt="">
+                                                </div>
+                                                <div class="review-user-info">
+                                                    <h4>{{ review.student_name }}</h4>
+                                                </div>
+                                            </div>
+                                            <div class="review-status d-flex align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                                    <circle cx="4" cy="4" r="3.5" fill="#7086FD" stroke="white" />
+                                                </svg>
+                                                <span>{{ review.sentiment or "Positive" }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="review-content">
+                                            <h5>{{ review.comment }}</h5>
+                                        </div>
+                                        <div class="review-rating">
+                                            <ul>
+                                                {% for i in range(review.rating|int) %}
+                                                <li>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M10.9714 2.46103C11.2231 1.6864 12.319 1.6864 12.5707 2.46103L14.225 7.55262C14.3376 7.89905 14.6604 8.13359 15.0247 8.13359L20.3783 8.1336C21.1928 8.1336 21.5314 9.17585 20.8725 9.6546L16.5413 12.8014C16.2467 13.0155 16.1233 13.395 16.2359 13.7414L17.8903 18.833C18.142 19.6076 17.2554 20.2518 16.5964 19.773L12.2653 16.6263C11.9706 16.4121 11.5715 16.4121 11.2768 16.6263L6.94568 19.773C6.28674 20.2518 5.40015 19.6076 5.65184 18.833L7.3062 13.7414C7.41876 13.395 7.29545 13.0155 7.00076 12.8014L2.6696 9.6546C2.01066 9.17585 2.34931 8.1336 3.1638 8.1336L8.51742 8.13359C8.88167 8.13359 9.20449 7.89905 9.31705 7.55262L10.9714 2.46103Z" fill="#5D5DFF" />
+                                                    </svg>
+                                                </li>
+                                                {% endfor %}
+                                                {% if review.rating - (review.rating|int) >= 0.5 %}
+                                                <li>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M10.9714 2.46103C11.2231 1.6864 12.319 1.6864 12.5707 2.46103L14.225 7.55262C14.3376 7.89905 14.6604 8.13359 15.0247 8.13359L20.3783 8.1336C21.1928 8.1336 21.5314 9.17585 20.8725 9.6546L16.5413 12.8014C16.2467 13.0155 16.1233 13.395 16.2359 13.7414L17.8903 18.833C18.142 19.6076 17.2554 20.2518 16.5964 19.773L12.2653 16.6263C11.9706 16.4121 11.5715 16.4121 11.2768 16.6263L6.94568 19.773C6.28674 20.2518 5.40015 19.6076 5.65184 18.833L7.3062 13.7414C7.41876 13.395 7.29545 13.0155 7.00076 12.8014L2.6696 9.6546C2.01066 9.17585 2.34931 8.1336 3.1638 8.1336L8.51742 8.13359C8.88167 8.13359 9.20449 7.89905 9.31705 7.55262L10.9714 2.46103Z" fill="#5D5DFF" />
+                                                    </svg>
+                                                </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {# End dynamic reviews loop #}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</section>
+        </main>
+        <!-- Main jQuery -->
+        <script src="/static/js/jquery-3.4.1.min.js"></script>
+        <!-- Bootstrap jQuery -->
+        <script src="/static/js/bootstrap.bundle.min.js"></script>
+        <!-- Custom jQuery -->
+        <script src="/static/js/scripts.js"></script>
+        <!-- Scroll-Top button -->
+        <a href="#" class="scrolltotop" style="display: none;">
+            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+            <span class="pluse"></span>
+            <span class="pluse2"></span>
+        </a>
+        <script src="/static/js/sessionManager.js"></script>
+    </body>
+</html>

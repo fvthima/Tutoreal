@@ -1,0 +1,12 @@
+Flask
+Flask-SQLAlchemy
+mysql-connector-python
+MarkupSafe
+nltk
+transformers
+eventlet
+Flask-Cors
+Flask-SocketIO
+Flask-APScheduler
+python-dotenv
+numpy

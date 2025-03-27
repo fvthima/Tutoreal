@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Call with {{session.tutor.name}}</title>
+  <!-- Include your CSS files -->
+  <link rel="icon" href="/static/images/favicon.ico">
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/all.min.css">
+  <link rel="stylesheet" href="/static/css/owl.carousel.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/responsive.css">
+  <!-- Socket.IO -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
+  <style>
+    /* Whiteboard overlay styling */
+    #whiteboardOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    #whiteboardContainer {
+      background: #fff;
+      border: 2px solid #ccc;
+      padding: 10px;
+      position: relative;
+      text-align: center;
+    }
+    #closeWhiteboard {
+      position: absolute;
+      top: -15px; right: -15px;
+      background: red;
+      color: #fff;
+      border-radius: 50%;
+      width: 30px; height: 30px;
+      border: none;
+      cursor: pointer;
+    }
+    /* Whiteboard control buttons */
+    #whiteboardControls {
+      margin-bottom: 10px;
+    }
+    #whiteboardControls label,
+    #whiteboardControls select,
+    #whiteboardControls input[type="color"],
+    #whiteboardControls button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+    /* Make the main video call box occupy a known space */
+    .video-call-main-box {
+      position: relative;
+      width: 100%;
+      height: 700px; /* or use aspect-ratio for responsiveness */
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-call-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    #remoteVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #localVideoContainer {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 150px;
+      height: 100px;
+      border: 2px solid white;
+      border-radius: 10px;
+      overflow: hidden;
+      background: black;
+    }
+    #localVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* ========== Buttons Styling for video controls ========== */
+    .video-call-controls-wp {
+      display: flex; 
+      align-items: center; 
+      padding: 10px; 
+      background: #f2f2f2;
+    }
+    .video-call-controls-wp button:not(#endCallButton) {
+      background-color: #fff;
+      border: none;
+      color: #000;
+      padding: 5px 10px;
+      margin-right: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #endCallButton {
+      background: red;
+      color: #fff;
+      margin-left: auto;
+      padding: 8px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .volume-container .volume-btn {
+      background-color: #fff;
+      border: none;
+      color: #000;
+      padding: 5px 50px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+    /* Preview canvas styling */
+    #previewCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    #chatMessages div {
+    padding: 10px;
+    margin-bottom: 1px;
+    }
+
+  </style>
+</head>
+<body style="background: #eee;">
+
+  {# Conditional Sidebar – tutor or student #}
+  {% if role == 'tutor' %}
+    <!-- Tutor Sidebar -->
+    <aside class="sidebar-area">
+      <div class="sidebar-logo">
+          <a href="#"> t <span>utoreal</span></a>
+          <div class="menu-close-toggle d-lg-none">
+              <i class="fa-solid fa-x"></i>
+          </div>
+      </div>
+      <div class="logout-btn">
+          <a href="{{ url_for('logout') }}">
+              <div class="icon">
+                  <!-- Sign Out Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <!-- Omitted for brevity -->
+                  </svg>
+              </div>
+              <p>Sign Out</p>
+          </a>
+      </div>
+    </aside>
+  {% else %}
+    <!-- Student Sidebar -->
+    <aside class="sidebar-area sidebar-two-sty">
+      <div class="sidebar-logo">
+          <a href="#">
+              t <span>utoreal</span>
+          </a>
+          <div class="menu-close-toggle d-lg-none">
+              <i class="fa-solid fa-x"></i>
+          </div>
+      </div>
+      <div class="logout-btn">
+          <a href="{{ url_for('logout') }}">
+              <div class="icon">
+                  <!-- Sign Out Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <!-- Omitted for brevity -->
+                  </svg>
+              </div>
+              <p>Sign Out</p>
+          </a>
+      </div>
+    </aside>
+  {% endif %}
+
+  <!-- ========== SIDEBAR END ========== -->
+  <header class="main-header d-lg-none">
+      <div class="menu-toggle-btn d-lg-none">
+          <button>
+              <i class="fa-solid fa-bars"></i>
+          </button>
+      </div>
+  </header>
+
+  <main class="main-area bg-sty-cng">
+      <section class="call-main-wrapper">
+          <div class="video-call-header">
+              <div class="zoom-box">
+                  <i class="fa-solid fa-video"></i>
+              </div>
+              <div class="video-header-wrapper">
+                  <div class="caller-info">
+                      <h2>{{ session.tutor.name }}'s Session</h2>
+                      <div class="date-time">
+                          <p>
+                              <span class="date">{{ session.scheduled_time.strftime("%b %d, %Y") }}</span> | 
+                              <span>{{ session.scheduled_time.strftime("%I:%M %p") }}</span>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="video-call-main-wp">
+              <!-- LEFT SIDE: VIDEO & CONTROLS -->
+              <div class="video-call-left">
+                  <div class="video-call-main-box">
+                      <!-- Remote Video (Larger Display) -->
+                      <div class="video-call-screen">
+                          <video id="remoteVideo" autoplay playsinline style="background: #444;"></video>
+                      </div>
+                      <!-- Local Video (Smaller Preview) -->
+                      <div id="localVideoContainer">
+                          <video id="localVideo" autoplay playsinline muted style="background: #000;"></video>
+                      </div>
+                  </div>
+                  <div class="video-call-controls-wp">
+                      <!-- Volume Control -->
+                      <div class="video-call-volume" style="margin-right:15px;">
+                          <div class="volume-container">
+                              <button class="volume-btn" id="volumeBtn">
+                                  <i class="fa-solid fa-volume-high"></i>
+                              </button>
+                              <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" step="10" value="50" style="vertical-align: middle;">
+                          </div>
+                      </div>
+                      <!-- Mute Button -->
+                      <button id="muteButton">
+                          <i class="fa-solid fa-microphone"></i>
+                      </button>
+                      <!-- Camera Button -->
+                      <button id="cameraButton">
+                          <i class="fa-solid fa-video"></i>
+                      </button>
+                      <!-- Whiteboard Button -->
+                      <button id="whiteboardToggle">
+                          <i class="fa-solid fa-pen"></i> Whiteboard
+                      </button>
+                      <!-- End Call -->
+                      <button id="endCallButton">
+                          End Class
+                      </button>
+                  </div>
+              </div>
+
+              <!-- RIGHT SIDE: PARTICIPANTS & CHAT -->
+              <div class="video-call-right" style="width:370px;">
+                  <div class="perticipent-wrapper" style="margin-top:0px;">
+                      <div class="perticipent-header" style="display:flex; align-items:center;">
+                          <h4>Participants</h4>
+                      </div>
+                      <div class="perticent-list" style="max-height:150px; overflow:auto;">
+                          <ul>
+                              <li>
+                                  <div class="perticipent-info">
+                                      <img src="{{ session.tutor.profile_pic_url }}" alt="">
+                                      <h4>{{ session.tutor.name }}</h4>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="perticipent-info">
+                                      <img src="{{ session.student.profile_pic_url }}" alt="">
+                                      <h4>{{ session.student.name }}</h4>
+                                  </div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="call-chat-wrapper" style="margin-top:0px;">
+                      <div class="chat-header" style="display:flex; align-items:center;">
+                          <h4>Chats</h4>
+                      </div>
+                      <div class="call-chat-box" id="chatMessages" style="height:200px; overflow:auto; background:#fff; border:1px solid #ccc; margin-bottom:10px; padding:5px;"></div>
+                      <div class="chat-bottom-wp">
+                          <form id="chatForm" onsubmit="return false;" style="display:flex;">
+                              <input type="text" id="chatInput" placeholder="Type Something..." style="margin-right:30px;">
+                              <button type="submit" id="sendMessage" style="padding: 5px 10px; background:#0060FF; color:#fff; border:none; border-radius:20px;">Send</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <!-- Whiteboard Overlay -->
+  <div id="whiteboardOverlay">
+      <div id="whiteboardContainer">
+          <button id="closeWhiteboard">X</button>
+          <!-- Whiteboard control buttons and options -->
+          <div id="whiteboardControls">
+            <label for="toolSelect">Tool:</label>
+            <select id="toolSelect">
+              <option value="pen" selected>Pen</option>
+              <option value="line">Line</option>
+              <option value="rectangle">Rectangle</option>
+              <option value="circle">Circle</option>
+              <option value="eraser">Eraser</option>
+            </select>
+            <label for="colorPicker">Color:</label>
+            <input type="color" id="colorPicker" value="#000000">
+            <button id="clearWhiteboard">Clear</button>
+          </div>
+          <!-- Main whiteboard canvas -->
+          <canvas id="whiteboard" width="1100" height="600" style="border:1px solid #ccc;"></canvas>
+          <!-- Preview canvas for live shape preview -->
+          <canvas id="previewCanvas" width="1100" height="600"></canvas>
+      </div>
+  </div>
+
+  <script>
+    // ======================
+    // 1) SOCKET.IO SETUP
+    // ======================
+    const socket = io("http://127.0.0.1:5001");
+    let localStream;
+    let peerConnection;
+    let currentUser = "";  // either tutor or student
+
+    const config = {
+        iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+    };
+
+    // Function to join the session as a user.
+    // This will be automatically called on page load.
+    function joinAs(username) {
+        currentUser = username;
+        socket.emit("join", { session_id: "{{ session.session_id }}", username: username });
+        console.log("Joined as " + username);
+    }
+
+
+    // ======================
+    // 2) VIDEO CALL SETUP
+    // ======================
+    (async function startCall() {
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            document.getElementById("localVideo").srcObject = localStream;
+
+            peerConnection = new RTCPeerConnection(config);
+            localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+            peerConnection.ontrack = (event) => {
+                if (event.streams && event.streams[0]) {
+                    document.getElementById("remoteVideo").srcObject = event.streams[0];
+                }
+            };
+
+            peerConnection.onicecandidate = (event) => {
+                if (event.candidate) {
+                    socket.emit("ice-candidate", { candidate: event.candidate, target: null });
+                }
+            };
+
+            // Create offer and broadcast
+            const offer = await peerConnection.createOffer();
+            await peerConnection.setLocalDescription(offer);
+            socket.emit("offer", { sdp: offer.sdp, target: null });
+        } catch (err) {
+            console.error("Error starting call:", err);
+        }
+    })();
+
+    socket.on("offer", async (data) => {
+        if (!peerConnection) {
+            peerConnection = new RTCPeerConnection(config);
+            localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+            peerConnection.ontrack = (event) => {
+                if (event.streams && event.streams[0]) {
+                    document.getElementById("remoteVideo").srcObject = event.streams[0];
+                }
+            };
+
+            peerConnection.onicecandidate = (event) => {
+                if (event.candidate) {
+                    socket.emit("ice-candidate", { candidate: event.candidate });
+                }
+            };
+        }
+        await peerConnection.setRemoteDescription({ type: "offer", sdp: data.sdp });
+        const answer = await peerConnection.createAnswer();
+        await peerConnection.setLocalDescription(answer);
+        socket.emit("answer", { sdp: answer.sdp });
+    });
+
+    socket.on("answer", async (data) => {
+        if (peerConnection) {
+            await peerConnection.setRemoteDescription({ type: "answer", sdp: data.sdp });
+        }
+    });
+
+    socket.on("ice-candidate", async (data) => {
+        if (data.candidate && peerConnection) {
+            try {
+                await peerConnection.addIceCandidate(data.candidate);
+            } catch (err) {
+                console.error("Error adding ICE candidate", err);
+            }
+        }
+    });
+
+    // ======================
+    // 3) BUTTON EVENTS (Video Controls)
+    // ======================
+    const muteButton = document.getElementById("muteButton");
+    const cameraButton = document.getElementById("cameraButton");
+    const micIcon = muteButton.querySelector("i");
+    const cameraIcon = cameraButton.querySelector("i");
+
+    // Declare global variable from template:
+    var role = "{{ role }}";  // 'student' or 'tutor'
+
+    // End Call button event
+    document.getElementById("endCallButton").addEventListener("click", () => {
+    // Close peer connection and stop local stream
+    if (peerConnection) {
+        peerConnection.close();
+    }
+    if (localStream) {
+        localStream.getTracks().forEach(track => track.stop());
+    }
+    
+    // Redirect based on role:
+    if (role === "student") {
+        // Redirect student to the call-feedback page
+        window.location.href = "{{ url_for('call_feedback') }}?session_id={{ session.session_id }}";
+    } else if (role === "tutor") {
+        // Redirect tutor to the review-feedback page
+        window.location.href = "{{ url_for('session_feedback') }}?session_id={{ session.session_id }}";
+    }
+    });
+
+    // Mute / Unmute
+    muteButton.addEventListener("click", () => {
+        if (!localStream) return;
+        const audioTrack = localStream.getAudioTracks()[0];
+        audioTrack.enabled = !audioTrack.enabled;
+        
+        // Toggle mic icon
+        if (audioTrack.enabled) {
+            micIcon.classList.remove("fa-microphone-slash");
+            micIcon.classList.add("fa-microphone");
+        } else {
+            micIcon.classList.remove("fa-microphone");
+            micIcon.classList.add("fa-microphone-slash");
+        }
+    });
+
+    // Camera On / Off
+    cameraButton.addEventListener("click", () => {
+        if (!localStream) return;
+        const videoTrack = localStream.getVideoTracks()[0];
+        videoTrack.enabled = !videoTrack.enabled;
+
+        // Toggle camera icon
+        if (videoTrack.enabled) {
+            cameraIcon.classList.remove("fa-video-slash");
+            cameraIcon.classList.add("fa-video");
+        } else {
+            cameraIcon.classList.remove("fa-video");
+            cameraIcon.classList.add("fa-video-slash");
+        }
+    });
+
+    // Volume slider
+    document.getElementById("volumeSlider").addEventListener("input", (e) => {
+        const vol = e.target.value / 100;
+        document.getElementById("remoteVideo").volume = vol;
+    });
+
+    // ======================
+    // 4) WHITEBOARD FUNCTIONALITY
+    // ======================
+    const whiteboardOverlay = document.getElementById("whiteboardOverlay");
+    const whiteboardBtn = document.getElementById("whiteboardToggle");
+    const closeWhiteboard = document.getElementById("closeWhiteboard");
+    const toolSelect = document.getElementById("toolSelect");
+    const colorPicker = document.getElementById("colorPicker");
+    const clearWhiteboardButton = document.getElementById("clearWhiteboard");
+    const wbCanvas = document.getElementById("whiteboard");
+    const wbCtx = wbCanvas.getContext("2d");
+    const previewCanvas = document.getElementById("previewCanvas");
+    const previewCtx = previewCanvas.getContext("2d");
+
+    // Drawing variables
+    let drawing = false;
+    let lastX = 0;
+    let lastY = 0;
+    let shapeStartX = 0;
+    let shapeStartY = 0;
+    let currentTool = toolSelect.value; // "pen" by default
+    let currentColor = colorPicker.value;
+    const defaultLineWidth = 2;
+    const eraserLineWidth = 10;
+
+    // Update tool and color based on controls
+    toolSelect.addEventListener("change", () => {
+      currentTool = toolSelect.value;
+    });
+    colorPicker.addEventListener("change", () => {
+      currentColor = colorPicker.value;
+    });
+
+    // Helper functions to draw on a given context
+    function drawLineOnCtx(ctx, x1, y1, x2, y2, color) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = defaultLineWidth;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+    function drawRectangleOnCtx(ctx, x1, y1, x2, y2, color) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = defaultLineWidth;
+      ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+    }
+    function drawCircleOnCtx(ctx, x1, y1, x2, y2, color) {
+      let radius = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = defaultLineWidth;
+      ctx.beginPath();
+      ctx.arc(x1, y1, radius, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    // For freehand drawing (pen/eraser) directly on main canvas
+    function drawLineSegment(x1, y1, x2, y2, tool, color) {
+      wbCtx.strokeStyle = (tool === "eraser") ? "#fff" : color;
+      wbCtx.lineWidth = (tool === "eraser") ? eraserLineWidth : defaultLineWidth;
+      wbCtx.lineCap = "round";
+      wbCtx.beginPath();
+      wbCtx.moveTo(x1, y1);
+      wbCtx.lineTo(x2, y2);
+      wbCtx.stroke();
+    }
+
+    // Mouse event listeners for whiteboard
+    wbCanvas.addEventListener("mousedown", (e) => {
+      const rect = wbCanvas.getBoundingClientRect();
+      if (currentTool === "pen" || currentTool === "eraser") {
+         drawing = true;
+         lastX = e.clientX - rect.left;
+         lastY = e.clientY - rect.top;
+      } else {
+         // For shapes, record starting point and clear preview
+         drawing = true;
+         shapeStartX = e.clientX - rect.left;
+         shapeStartY = e.clientY - rect.top;
+         previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+      }
+    });
+
+    wbCanvas.addEventListener("mousemove", (e) => {
+      const rect = wbCanvas.getBoundingClientRect();
+      const currentX = e.clientX - rect.left;
+      const currentY = e.clientY - rect.top;
+      if (!drawing) return;
+      if (currentTool === "pen" || currentTool === "eraser") {
+         drawLineSegment(lastX, lastY, currentX, currentY, currentTool, currentColor);
+         socket.emit("draw", { type: "segment", x1: lastX, y1: lastY, x2: currentX, y2: currentY, tool: currentTool, color: currentColor });
+         lastX = currentX;
+         lastY = currentY;
+      } else {
+         // For shape tools, clear preview canvas and draw preview shape
+         previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+         if (currentTool === "line") {
+            drawLineOnCtx(previewCtx, shapeStartX, shapeStartY, currentX, currentY, currentColor);
+         } else if (currentTool === "rectangle") {
+            drawRectangleOnCtx(previewCtx, shapeStartX, shapeStartY, currentX, currentY, currentColor);
+         } else if (currentTool === "circle") {
+            drawCircleOnCtx(previewCtx, shapeStartX, shapeStartY, currentX, currentY, currentColor);
+         }
+      }
+    });
+
+    wbCanvas.addEventListener("mouseup", (e) => {
+      const rect = wbCanvas.getBoundingClientRect();
+      const endX = e.clientX - rect.left;
+      const endY = e.clientY - rect.top;
+      if (currentTool === "line") {
+         drawLineOnCtx(wbCtx, shapeStartX, shapeStartY, endX, endY, currentColor);
+         socket.emit("draw", { type: "line", x1: shapeStartX, y1: shapeStartY, x2: endX, y2: endY, color: currentColor });
+      } else if (currentTool === "rectangle") {
+         drawRectangleOnCtx(wbCtx, shapeStartX, shapeStartY, endX, endY, currentColor);
+         socket.emit("draw", { type: "rectangle", x1: shapeStartX, y1: shapeStartY, x2: endX, y2: endY, color: currentColor });
+      } else if (currentTool === "circle") {
+         drawCircleOnCtx(wbCtx, shapeStartX, shapeStartY, endX, endY, currentColor);
+         socket.emit("draw", { type: "circle", x1: shapeStartX, y1: shapeStartY, x2: endX, y2: endY, color: currentColor });
+      }
+      drawing = false;
+      previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+    });
+    wbCanvas.addEventListener("mouseout", () => { drawing = false; previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height); });
+
+    // Listen for drawing events from server
+    socket.on("draw", (data) => {
+      if (data.type === "segment") {
+         drawLineSegment(data.x1, data.y1, data.x2, data.y2, data.tool, data.color);
+      } else if (data.type === "line") {
+         drawLineOnCtx(wbCtx, data.x1, data.y1, data.x2, data.y2, data.color);
+      } else if (data.type === "rectangle") {
+         drawRectangleOnCtx(wbCtx, data.x1, data.y1, data.x2, data.y2, data.color);
+      } else if (data.type === "circle") {
+         drawCircleOnCtx(wbCtx, data.x1, data.y1, data.x2, data.y2, data.color);
+      }
+    });
+
+    // Clear the whiteboard
+    clearWhiteboardButton.addEventListener("click", () => {
+      wbCtx.clearRect(0, 0, wbCanvas.width, wbCanvas.height);
+      previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+    });
+
+    // Show/Hide whiteboard overlay
+    whiteboardBtn.addEventListener("click", () => {
+      whiteboardOverlay.style.display = "flex";
+    });
+    closeWhiteboard.addEventListener("click", () => {
+      whiteboardOverlay.style.display = "none";
+    });
+
+    // ======================
+    // 5) CHAT FUNCTIONALITY
+    // ======================
+    const chatForm = document.getElementById("chatForm");
+    const chatInput = document.getElementById("chatInput");
+    const chatMessages = document.getElementById("chatMessages");
+
+    socket.on("receiveMessage", (msg) => {
+        addChatMessage(msg.sender, msg.message);
+    });
+
+    chatForm.addEventListener("submit", () => {
+        const message = chatInput.value.trim();
+        if (!message) return;
+        socket.emit("sendMessage", {
+            session_id: "{{ session.session_id }}", // ensure the session_id is included
+            sender: currentUser || "Guest",
+            message: message
+        });
+        chatInput.value = "";
+    });
+
+
+    function addChatMessage(sender, text) {
+        const msgDiv = document.createElement("div");
+        msgDiv.style.marginBottom = "5px";
+        msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // ======================
+    // 6) AUTO-JOIN ON PAGE LOAD
+    // ======================
+    window.addEventListener("load", () => {
+      // Automatically join the session based on the user's role.
+      {% if role == 'tutor' %}
+        joinAs('{{ session.tutor.name }}');
+      {% else %}
+        joinAs('{{ session.student.name }}');
+      {% endif %}
+    });
+  </script>
+  <script src="/static/js/sessionManager.js"></script>
+</body>
+</html>

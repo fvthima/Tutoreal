@@ -24,7 +24,7 @@ from models import Tutor, Student, Subject, TutorSubject, TutorReview, TutorAvai
 analyzer = SentimentIntensityAnalyzer()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True, origins=["http://localhost:5001", "http://127.0.0.1:5001"])
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
 UPLOAD_FOLDER = "static/uploads"

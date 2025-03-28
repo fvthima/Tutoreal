@@ -80,43 +80,44 @@ The project demonstrates best practices in modular programming and code organiza
 
 ## Detailed workflow 
 
-### for the tutor case:
+### For the tutor case:
 
-1.  ⁠First, the tutor can either log in or sign up. If logging in with an existing account, the tutor enters their email and password, and upon successful authentication, they are directed to the tutor dashboard. If signing up, they provide an email and password and are immediately taken to the profile settings page to input their details.
+ 1. First, the tutor can either log in or sign up. If logging in with an existing account, the tutor enters their email and password, and upon successful authentication, they are directed to the tutor dashboard. If signing up, they provide an email and password and are immediately taken to the profile settings page to input their details.
 
-2.⁠  ⁠From the dashboard (or profile settings page in the signup case), the tutor can navigate to the Profile Settings page (accessed via the top right corner). Here, they can update their personal information and add details for any upcoming sessions by clicking on edit and then save.
+ 2.⁠ From the dashboard (or profile settings page in the signup case), the tutor can navigate to the Profile Settings page (accessed via the top right corner). Here, they can update their personal information and add details for any upcoming sessions by clicking on edit and then save.
 
-3.⁠  ⁠Both login and signup flows allow the tutor to access the My Sessions tab which can be accessed from the left side of the dashboard. In this section, they can see a list of upcoming sessions (booked by students) and review completed sessions.
+ 3.⁠ ⁠Both login and signup flows allow the tutor to access the My Sessions tab which can be accessed from the left side of the dashboard. In this section, they can see a list of upcoming sessions (booked by students) and review completed sessions.
 
-4.⁠  ⁠After a session ends, the student provides review and feedback. The tutor can then navigate to the Reviews page via the left side navigation on the dashboard. This page not only shows the review details but also features AI-driven sentiment analysis and improvement tips to help the tutor enhance their teaching practices.
+ 4.⁠ ⁠After a session ends, the student provides review and feedback. The tutor can then navigate to the Reviews page via the left side navigation on the dashboard. This page not only shows the review details but also features AI-driven sentiment analysis and improvement tips to help the tutor enhance their teaching practices.
 
 This end-to-end workflow ensures that tutors have a streamlined experience from authentication, profile management, and session scheduling to receiving actionable feedback after sessions.
 
-### for the student case:
+### For the student case:
 
-1.⁠  ⁠First, the student can either log in or sign up. Both processes work similarly—upon entering their email and password, they are directed to the student profile settings page where they input or update their personal details by clicking on edit and then saving.
+ 1.⁠  ⁠First, the student can either log in or sign up. Both processes work similarly—upon entering their email and password, they are directed to the student profile settings page where they input or update their personal details by clicking on edit and then saving.
 
-2.⁠  ⁠From the dashboard, the student navigates to the “Find a Tutor” page ( accessed from the left-side menu). Here, they can enter key criteria such as the subject they need help with, their availability, language preference, and learning style. After entering these details, the student clicks the “Match Me” button.
+ 2.⁠  ⁠From the dashboard, the student navigates to the “Find a Tutor” page ( accessed from the left-side menu). Here, they can enter key criteria such as the subject they need help with, their availability, language preference, and learning style. After entering these details, the student clicks the “Match Me” button.
 
-3.⁠  ⁠The system then processes these inputs through the AI Matching Module and presents a top tutor recommendation based on compatibility.
+ 3.⁠  ⁠The system then processes these inputs through the AI Matching Module and presents a top tutor recommendation based on compatibility.
 
-4.⁠  ⁠The student has two options:  – View the tutor’s profile for additional details about qualifications, reviews, and availability.  – Book a session with the recommended tutor. For booking, the student inputs the desired date and time, and then proceeds to the payment stage.
+ 4.⁠  ⁠The student has two options:  – View the tutor’s profile for additional details about qualifications, reviews, and availability.  – Book a session with the recommended tutor. For booking, the student inputs the desired date and time, and then proceeds to the payment stage.
 
-5.⁠  ⁠Upon successful payment, the student can navigate to the “My Sessions” tab where all upcoming sessions are listed. At the designated time, the student clicks the “Join” button to enter the session.
+ 5.⁠  ⁠Upon successful payment, the student can navigate to the “My Sessions” tab where all upcoming sessions are listed. At the designated time, the student clicks the “Join” button to enter the session.
 
-6.⁠  ⁠After the session concludes, the student is prompted to provide feedback and leave a review. This input not only helps the tutor improve but also refines future matching recommendations for the student.
+ 6.⁠  ⁠After the session concludes, the student is prompted to provide feedback and leave a review. This input not only helps the tutor improve but also refines future matching recommendations for the student.
 
 This workflow ensures a seamless end-to-end experience for students—from account creation and personalized tutor matching to booking, session participation, and post-session review—reflecting the system specifications detailed in our documentation.
 
 ## Step‐by‐step testing workflow for the real‑time collaboration feature using an existing tutor and student account:
 
 1.⁠  ⁠Start by opening your browser and logging in as the tutor in one tab. 
- - log in with the following existing credentials:
-2.⁠  Navigate to the Profile Settings page and input an availability slot that starts in the next 5 minutes.
+ - Log in with the following existing credentials:
 
          Tutor
          username: sophia.anderson@example.com
          password: password
+   
+2.⁠  Navigate to the Profile Settings page and input an availability slot that starts in the next 5 minutes.
    
 3.⁠  ⁠Open a new browser tab and log in as a student. 
 
@@ -124,7 +125,8 @@ This workflow ensures a seamless end-to-end experience for students—from accou
          username: adam.freeman@example.com
          password: password
 
-4.⁠  From the dashboard, go to the “Find a Tutor” page. Enter the following criteria:  – Subject: Calculus 2
+4.⁠  From the dashboard, go to the “Find a Tutor” page. Enter the following criteria:
+ – Subject: Calculus 2
  – Date: Current date
  – Language: English
  – Learning Style: Visual
@@ -136,10 +138,10 @@ Then click the “Match Me” button. (For testing purposes, the system is set u
 
 7.⁠  ⁠Once the session concludes, have the student provide feedback and leave a review. The tutor can then log in to view the received feedback.
 
-8.⁠  ⁠For further testing, the student can repeat the booking process multiple times and deliberately leave a few bad reviews for the same tutor. Then, by re‐entering the same search criteria on the “Find a Tutor” page, you can observe that the top match changes—demonstrating that the matching system is learning from past session data.
+8.⁠  ⁠For further testing, the student can repeat the booking process multiple times and deliberately leave a few bad reviews for the same tutor. Then, by re‐entering the same search criteria on the “Find a Tutor” page, you can observe that the top match changes, demonstrating that the matching system is learning from past session data.
 
 
-### Module-specific Scripts:
+### Module-Specific Scripts:
 
  - issue_extraction.py: Extract and analyze issues from text data.
 

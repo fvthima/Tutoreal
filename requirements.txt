@@ -4,6 +4,9 @@ mysql-connector-python
 MarkupSafe
 nltk
 transformers
+torch
+torchvision
+torchaudio
 eventlet
 Flask-Cors
 Flask-SocketIO

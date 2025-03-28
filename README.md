@@ -124,8 +124,8 @@ This workflow ensures a seamless end-to-end experience for students—from accou
    
 3.⁠  ⁠Open a new browser tab and log in as a student. 
 
- -    ```
-
+ -
+   ```
          Student
          username: adam.freeman@example.com
          password: password

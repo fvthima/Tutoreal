@@ -76,7 +76,7 @@ The project demonstrates best practices in modular programming and code organiza
 
 ### Accessing the Platform:
 
-    http://localhost:5001
+    http://127.0.0.1:5001
 
 ## Detailed workflow 
 

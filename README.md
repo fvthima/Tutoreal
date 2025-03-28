@@ -84,11 +84,11 @@ The project demonstrates best practices in modular programming and code organiza
 
  1. First, the tutor can either log in or sign up. If logging in with an existing account, the tutor enters their email and password, and upon successful authentication, they are directed to the tutor dashboard. If signing up, they provide an email and password and are immediately taken to the profile settings page to input their details.
 
- 2.⁠ From the dashboard (or profile settings page in the signup case), the tutor can navigate to the Profile Settings page (accessed via the top right corner). Here, they can update their personal information and add details for any upcoming sessions by clicking on edit and then save.
+ 2. From the dashboard (or profile settings page in the signup case), the tutor can navigate to the Profile Settings page (accessed via the top right corner). Here, they can update their personal information and add details for any upcoming sessions by clicking on edit and then save.
 
- 3.⁠ ⁠Both login and signup flows allow the tutor to access the My Sessions tab which can be accessed from the left side of the dashboard. In this section, they can see a list of upcoming sessions (booked by students) and review completed sessions.
+ 3. Both login and signup flows allow the tutor to access the My Sessions tab which can be accessed from the left side of the dashboard. In this section, they can see a list of upcoming sessions (booked by students) and review completed sessions.
 
- 4.⁠ ⁠After a session ends, the student provides review and feedback. The tutor can then navigate to the Reviews page via the left side navigation on the dashboard. This page not only shows the review details but also features AI-driven sentiment analysis and improvement tips to help the tutor enhance their teaching practices.
+ 4. After a session ends, the student provides review and feedback. The tutor can then navigate to the Reviews page via the left side navigation on the dashboard. This page not only shows the review details but also features AI-driven sentiment analysis and improvement tips to help the tutor enhance their teaching practices.
 
 This end-to-end workflow ensures that tutors have a streamlined experience from authentication, profile management, and session scheduling to receiving actionable feedback after sessions.
 
